@@ -26,12 +26,12 @@ func main() {
 	time.Sleep(time.Second)
 }
 
-// 定义一个结构体（相当于面向对象语言里面的class）
+// Singleton 定义一个结构体（相当于面向对象语言里面的class）
 type Singleton struct {
 	name string
 }
 
-// 相当于class的方法
+// Say 相当于class的方法
 func (s Singleton) Say() {
 	fmt.Printf("%s: Say Hello\n", s.name)
 }
@@ -46,7 +46,7 @@ var lazyInstance *Singleton
 // 但是这样并不优雅，相当于每次New的时候都得加锁，影响性能，所以最好的方式是使用once
 var once sync.Once
 
-// 懒汉式，所谓懒汉式就是比较懒，等你第一次调用的时候才会去实例化对象
+// NewLazySingleton 懒汉式，所谓懒汉式就是比较懒，等你第一次调用的时候才会去实例化对象
 func NewLazySingleton() *Singleton {
 	once.Do(func() {
 		fmt.Println("init lazy")
@@ -57,7 +57,7 @@ func NewLazySingleton() *Singleton {
 
 var hungryInstance = Singleton{name: "hungry"}
 
-// 饿汉式，所谓饿汉式就是在你调用New之前就已经初始化好了，这个更简单，而且也不需要锁
+// NewHungrySingleton 饿汉式，所谓饿汉式就是在你调用New之前就已经初始化好了，这个更简单，而且也不需要锁
 func NewHungrySingleton() *Singleton {
 	return &hungryInstance
 }
