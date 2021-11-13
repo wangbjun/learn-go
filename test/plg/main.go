@@ -1,13 +1,11 @@
 package main
 
+import "github.com/tidwall/gjson"
+
 var Name = "Plugin Name"
 
-type NameStruct struct{}
-
-func NewName() NameStruct {
-	return NameStruct{}
-}
-
-func (NameStruct) GetName() string {
+func GetName() string {
+	err := gjson.ValidBytes([]byte("222222"))
+	println(err)
 	return Name
 }
