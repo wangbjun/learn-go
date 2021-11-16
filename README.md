@@ -1,2 +1,2 @@
 # learn Go
-Just For Go!
+Some Go Code
